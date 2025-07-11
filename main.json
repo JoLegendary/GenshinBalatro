@@ -1,0 +1,10 @@
+{
+  "id": "TestMod",
+  "name": "TestMod",
+  "display_name": "TestMod",
+  "author": ["Alaxcia"],
+  "description": "Just Testing Modded",
+  "prefix": "tm",
+  "main_file": "main.lua",
+  "version": "1.0.0"
+}
