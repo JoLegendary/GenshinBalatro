@@ -99,7 +99,7 @@ SMODS.Joker{
     pos = {x=0, y=0},
     blueprint_compat = true,
     rarity = 3,
-    cost = 10,
+    cost = 8,
     unlocked = true,
     config = { extra = { h_plays = -1, xmult_gain = 0.25, xmult = 1 } },    
     loc_vars = function(self, info_queue, card)
@@ -138,8 +138,8 @@ SMODS.Joker{
     atlas = 'OusiaFurina',
     pos = {x=0, y=0},
     blueprint_compat = true,
-    rarity = 3,
-    cost = 10,
+    rarity = 1,
+    cost = 4,
     unlocked = true,
     config = { extra = { score_buffer = 1, card_buffer = 1, mult = 20 } },
     loc_vars = function(self,info_queue,card)
@@ -166,6 +166,47 @@ SMODS.Joker{
             end
         elseif context.joker_main then
             card.ability.extra.score_buffer = 1
+        end
+    end,
+}
+
+SMODS.Joker{
+    key = 'kleetr',
+    loc_txt = {
+        name = 'Klee',
+        text = {
+            "Every played cards have a {C:green}#1# in #2#{} chance",
+            "to add a permanent {C:mult}#3#{} to {C:mult}+#4#{} mult",
+            "Chance increases by {C:green}#5#{} for every failed roll",
+        }
+    },
+    atlas = 'OusiaFurina',
+    pos = {x=0, y=0},
+    blueprint_compat = true,
+    rarity = 2,
+    cost = 6,
+    unlocked = true,
+    config = { extra = { odds = 5, max = 10, min = -5, failed = 0 , failed_increase = 1} },
+    loc_vars = function(self, info_queue, card)
+        return { vars = { ((G.GAME.probabilities.normal or 1) + (card.ability.extra.failed or 0)), card.ability.extra.odds, card.ability.extra.min, card.ability.extra.max, card.ability.extra.failed_increase } }
+    end,
+    calculate = function(self, card, context)
+        if context.individual and context.cardarea == G.play then 
+            if pseudorandom('genshin_klee') < ((G.GAME.probabilities.normal or 1) + (card.ability.extra.failed or 0)) / card.ability.extra.odds then
+                card.ability.extra.failed = 0
+                for i = 1, #G.hand.cards do
+                    G.hand.cards[i].ability.perma_mult = (G.hand.cards[i].ability.perma_mult or 0) + pseudorandom('genshin_klee', card.ability.extra.min, card.ability.extra.max)
+                end
+                for i = 1, #G.play.cards do
+                    G.play.cards[i].ability.perma_mult = (G.play.cards[i].ability.perma_mult or 0) + pseudorandom('genshin_klee', card.ability.extra.min, card.ability.extra.max)
+                end
+                return {
+                    message = localize('k_upgrade_ex'),
+                    colour = G.C.CHIPS
+                }
+            else
+                card.ability.extra.failed = card.ability.extra.failed + card.ability.extra.failed_increase
+            end
         end
     end,
 }
