@@ -1,10 +1,13 @@
 {
-  "id": "TestMod",
-  "name": "TestMod",
-  "display_name": "TestMod",
-  "author": ["Alaxcia"],
-  "description": "Just Testing Modded",
-  "prefix": "tm",
+  "id": "GenshinBalatro",
+  "name": "GenshinBalatro",
+  "display_name": "GenshinBalatro",
+  "author": ["Alaxcia", "JoLegendary"],
+  "description": "Adding Genshin related stuff to Balatro",
+  "prefix": "GB",
   "main_file": "main.lua",
-  "version": "1.0.0"
+  "version": "1.0.1",
+  "dependencies": [
+    "Steamodded (>=1.0.0~BETA-0614a)"
+  ]
 }
