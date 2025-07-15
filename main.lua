@@ -1,6 +1,6 @@
 SMODS.Atlas{
-    key = 'Furina',
-    path = "furina_balatro.png",
+    key = 'PneumaFurina',
+    path = "pneuma_furina_balatro.png",
     px = 71,
     py = 95
 }
@@ -10,16 +10,22 @@ SMODS.Atlas{
     px = 71,
     py = 95
 }
+SMODS.Atlas{
+    key = 'Placeholder',
+    path = "placeholder.png",
+    px = 71,
+    py = 95
+}
 SMODS.Joker{
-    key = 'furinatr',
+    key = 'pneumafurinatr',
     loc_txt = {
-        name = 'Furina',
+        name = 'Pneuma Furina',
         text = {
             "Copies ability of",
             "{C:attention}2 Jokers{} to the right",
         }
     },
-    atlas = 'Furina',
+    atlas = 'PneumaFurina',
     pos = {x=0, y=0},
     blueprint_compat = true,
     rarity = 3,
@@ -135,7 +141,7 @@ SMODS.Joker{
             "gets retriggered",
         }
     },
-    atlas = 'OusiaFurina',
+    atlas = 'Placeholder',
     pos = {x=0, y=0},
     blueprint_compat = true,
     rarity = 1,
@@ -180,7 +186,7 @@ SMODS.Joker{
             "Chance increases by {C:green}#5#{} for every failed roll",
         }
     },
-    atlas = 'OusiaFurina',
+    atlas = 'Placeholder',
     pos = {x=0, y=0},
     blueprint_compat = true,
     rarity = 2,
